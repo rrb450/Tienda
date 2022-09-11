@@ -1,6 +1,6 @@
 package com.nextscrum.tienda.modelo;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +12,7 @@ import java.util.List;
 import static javax.persistence.GenerationType.AUTO;
 
 @Entity
-@Table(name = "Empresa")
+@Table(name = "empresa")
 public class Empresa{
 
     @Id
@@ -31,11 +31,12 @@ public class Empresa{
     @Column(name = "address", length = 50)
     private String address;
 
-    @OneToMany(mappedBy = "Empresa")
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<Empleado> empleados = new ArrayList<>();
 
-    @OneToMany(mappedBy = "Empresa")
+    @OneToMany(mappedBy = "empresa", cascade  = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<MovimientoDinero> transacciones = new ArrayList<>();
 
     @Column(name = "createdAt")

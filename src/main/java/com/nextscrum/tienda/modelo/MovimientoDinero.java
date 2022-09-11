@@ -1,15 +1,36 @@
 package com.nextscrum.tienda.modelo;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name="movimientoDinero")
 public class MovimientoDinero {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id", nullable = false,unique = true)
     private Long id;
+
+    @Column(name= "concepto",nullable = false, length = 250)
     private String concepto;
+
+    @Column(name= "cantidad",nullable = false)
     private float cantidad;
+
+    @ManyToOne
+    @JoinColumn(name= "empleado_id")
     private Perfil perfil;
+
+    @ManyToOne
+    @JoinColumn(name="empresa_id")
     private Empresa empresa;
+
+    @Column(name = "createdAt")
     private Date createdAt;
+    @Column(name = "updatedAt")
     private Date updatedAt;
 
     public MovimientoDinero(){

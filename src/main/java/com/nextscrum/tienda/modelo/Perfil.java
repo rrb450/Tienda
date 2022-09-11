@@ -1,14 +1,32 @@
 package com.nextscrum.tienda.modelo;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "perfil")
 public class Perfil {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id", nullable = false,unique = true)
     private String id;
+
+    @Column(name="imagen")
     private String imagen;
+
+    @Column(name="telefono", length = 20)
     private String telefono;
+
+    @OneToOne
+    @JoinColumn(name="empleado_id")
     private Empleado empleado;
+
+    @Column(name="createdAt")
     private Date createdAt;
+
+    @Column(name = "updatedAt")
     private Date updatedAt;
 
     public Perfil(){
