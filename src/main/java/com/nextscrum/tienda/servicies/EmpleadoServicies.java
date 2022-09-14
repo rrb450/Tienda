@@ -1,12 +1,15 @@
-package serviser;
+package com.nextscrum.tienda.servicies;
 
 
+import com.nextscrum.tienda.modelo.Empleado;
+import com.nextscrum.tienda.repositories.repositorio;
 import org.springframework.beans.factory.annotation.*;
 
 import org.springframework.stereotype.Service;
-import repositorio.repositorio;
-import tienda.modelo.Empleado;
+
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,7 +35,7 @@ public class serviserUser {
     }
 
 
-    public ArrayList<Empleado>  obtenerPorPrioridad(Integer prioridad) {
+    public ArrayList<Empleado> obtenerPorPrioridad(Integer prioridad) {
         return usuarioRepository.findByPrioridad(prioridad);
     }
 
